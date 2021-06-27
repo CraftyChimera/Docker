@@ -24,7 +24,7 @@ done
 fi
 
 
-if [ $(grep $(date +%F) ./future.txt | wc -l) -gt 0 ]
+if [ $(grep $(date +%F) /scripts/future.txt | wc -l) -gt 0 ]
 then
-grep $(date +%F) ./future.txt > /home/Jay_Jay/schedule.txt
+grep $(date +%F) /scripts/future.txt > /home/Jay_Jay/schedule.txt
 fi

@@ -1,4 +1,5 @@
 #!/bin/bash
+chmod go-rwx /home/Jay_Jay
 chgrp 3sys /home/sysAd_10
 chmod go-rwx /home/sysAd_10
 chmod g+r /home/sysAd_10
