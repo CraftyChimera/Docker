@@ -1,0 +1,43 @@
+version: '3'
+services:
+ data:
+   image: mysql
+   container_name: data
+   restart: always
+   environment: 
+   - MYSQL_ROOT_PASSWORD=hi
+   volumes: 
+    - .:/docker-entrypoint-initdb.d
+    - datav:/var/lib/mysql
+   ports:
+    - "8001:3306"
+   networks: 
+    - server 
+    
+ serv:
+  build: ..
+  container_name: serv
+  entrypoint: /init.sh
+  tty: true
+  stdin_open: true
+  depends_on:
+    - data
+  networks: 
+    - server
+ 
+ view:
+  container_name: view
+  image: phpmyadmin 
+  restart: always
+  environment:
+   PMA_HOSTS: data
+  ports:
+   - "8080:80" 
+  networks:
+   - server
+    
+networks: 
+  server: {}  
+volumes: 
+  datav: 
+ 
