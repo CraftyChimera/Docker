@@ -1,7 +1,11 @@
 FROM ubuntu
 COPY . /scripts
-RUN rm /scripts/Dockerfile
-RUN echo "alias genuser='/scripts/genuser.sh > /dev/null' alias permit='/scripts/permit.sh'">>/root/.bashrc
-RUN echo "alias schedule='/scripts/schedule.sh' alias attendance='/scripts/attendance.sh'">>/root/.bashrc
-RUN echo "alias genmom='/scripts/genmomdb.sh' alias getmom='/scripts/getmom.sh'">>/root/.bashrc
-CMD bash
+COPY ./init.sh /
+RUN rm /scripts/Dockerfile && rm -rf /scripts/sql/
+RUN apt-get update && apt-get install cron -y
+RUN apt-get install mysql-server -y
+RUN echo "alias attendance='/scripts/attendance.sh'">>/root/.bashrc
+RUN echo "alias getmom='/scripts/getmom.sh'">>/root/.bashrc
+RUN /scripts/genuser.sh > /dev/null
+RUN /scripts/permit.sh
+RUN /scripts/schedule.sh

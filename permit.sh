@@ -22,7 +22,7 @@ chmod g+r /home/appDev_0$i
 chgrp 3web /home/webDev_0$i
 chmod go-rwx /home/webDev_0$i
 chmod g+r /home/webDev_0$i   
-elif [ $i == 10 ]
+elif [ $i -eq 10 ]
 then
 continue
 elif [ $i -lt 21 ]
