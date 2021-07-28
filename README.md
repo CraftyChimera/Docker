@@ -1,5 +1,5 @@
 # Docker
-
+the docker-compose file is inside sql directory
 mysql root password is 'hi'
 
 The mysql read-only user's username is Jay and Jay's password is 'yo'
